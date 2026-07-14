@@ -1,3 +1,27 @@
+@font-face {
+  font-family: "FFGoodPro";
+  src: url("../fonts/FFGoodPro-Light.eot");
+  src: url("../fonts/FFGoodPro-Thin.eot?#iefix") format("embedded-opentype"), url("../fonts/FFGoodPro-Light.woFFGoodPro") format("woFFGoodPro"), url("../fonts/FFGoodPro-Light.ttf") format("truetype");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "FFGoodPro";
+  src: url("../fonts/FFGoodPro-Medium.eot");
+  src: url("../fonts/FFGoodPro-Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/FFGoodPro-Medium.woFFGoodPro") format("woFFGoodPro"), url("../fonts/FFGoodPro-Medium.ttf") format("truetype");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "FFGoodPro";
+  src: url("../fonts/FFGoodPro-Bold.eot");
+  src: url("../fonts/FFGoodPro-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/FFGoodPro-Bold.woFFGoodPro") format("woFFGoodPro"), url("../fonts/FFGoodPro-Bold.ttf") format("truetype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "FFGoodPro";
+  src: url("../fonts/FFGoodPro-Ultra.eot");
+  src: url("../fonts/FFGoodPro-Ultra.eot?#iefix") format("embedded-opentype"), url("../fonts/FFGoodPro-Ultra.woFFGoodPro") format("woFFGoodPro"), url("../fonts/FFGoodPro-Ultra.ttf") format("truetype");
+  font-weight: 400;
+}
 .header {
   border: 1px solid lightgrey;
 }
@@ -17,4 +41,60 @@
   border-radius: 10px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.main {
+  font-family: "FFGoodPro";
+  text-align: center;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: url("/images/background_main.png");
+  padding-left: 14%;
+  padding-top: 10vw;
+  padding-bottom: 250px;
+  border-bottom: 1px solid lightgrey;
+}
+.main__title {
+  font-weight: 300;
+  font-size: 7vw;
+  width: 70vw;
+  letter-spacing: 10%;
+}
+.main__subtitle {
+  margin-top: 20px;
+  font-weight: 100;
+  font-size: 2vw;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding-left: 16%;
+}
+
+.first-date {
+  font-family: "FFGoodPro";
+  font-weight: 200;
+  text-align: center;
+  padding-bottom: 4vw;
+}
+.first-date__sample {
+  z-index: 1;
+  width: 50%;
+  margin-left: 25%;
+}
+.first-date__sample-img {
+  width: 100%;
+}
+.first-date__title {
+  font-size: 4vw;
+  margin-left: auto;
+  margin-top: 5vw;
+  margin-bottom: 3vw;
+}
+.first-date__subtitle {
+  font-size: 3vw;
+  margin-top: 3vw;
+  margin-left: auto;
 }/*# sourceMappingURL=style.css.map */

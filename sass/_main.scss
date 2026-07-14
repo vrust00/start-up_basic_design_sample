@@ -1,0 +1,36 @@
+.main{
+   
+   
+   font-family: 'FFGoodPro';
+   text-align: center;
+   top: 0;
+   left: 0;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+   background-attachment: fixed;
+   background-image: url('/images/background_main.png');
+   padding-left: 14%;
+   padding-top: 10vw;
+   padding-bottom: 250px;
+   border-bottom: 1px solid lightgrey;
+   &__title{
+      font-weight: 300;
+       font-size: 7vw;
+       width: 70vw;
+       letter-spacing: 10%;
+       
+       
+       
+
+   }
+   &__subtitle{
+      margin-top: 20px;
+      font-weight: 100;
+       font-size: 2vw;
+       width: fit-content;
+       padding-left: 16%;
+      
+   }
+   
+}

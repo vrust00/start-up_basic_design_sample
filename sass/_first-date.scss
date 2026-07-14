@@ -1,0 +1,28 @@
+.first-date{
+   font-family: 'FFGoodPro';
+   font-weight: 200;
+   text-align: center;
+   padding-bottom: 4vw;
+   &__sample {
+      z-index: 1;
+      width: 50%; 
+      margin-left: 25%;          
+   }
+
+   &__sample-img{
+      width: 100%;
+   }
+
+   &__title{
+      font-size: 4vw;
+      margin-left: auto;
+      margin-top: 5vw;
+      margin-bottom: 3vw;
+   }
+   &__subtitle{
+      font-size: 3vw;
+      margin-top: 3vw;
+      margin-left: auto;
+      
+   }
+}
