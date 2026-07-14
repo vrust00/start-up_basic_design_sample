@@ -1,17 +1,22 @@
 .first-date{
+   position: relative;       
    font-family: 'FFGoodPro';
    font-weight: 200;
    text-align: center;
    padding-bottom: 4vw;
+   
    &__sample {
       z-index: 1;
-      width: 50%; 
-      margin-left: 25%;          
+      width: 70%; 
+      margin-left: 12.5vw;     
+      display: flex;   
    }
 
    &__sample-img{
-      width: 100%;
+      width: 100%;   
    }
+
+
 
    &__title{
       font-size: 4vw;
@@ -20,9 +25,43 @@
       margin-bottom: 3vw;
    }
    &__subtitle{
+      z-index: 2;
       font-size: 3vw;
       margin-top: 3vw;
       margin-left: auto;
+      margin-bottom: 5vw;
       
+   }
+   &__hearts-container{
+      position: absolute;
+      z-index: 1;
+      
+      height: 30vw;
+      width: 100vw;
+      bottom: 0;
+         
+   }
+}
+
+.heart {
+   
+   position: absolute;
+   bottom: 0;
+   font-size: 24px;
+   animation: floatUp linear forwards;
+   user-select: none;
+   color: #ff4d4d;
+   width: 10px;
+   height: 10px;
+}
+
+@keyframes floatUp {
+   0% {
+      transform: translateY(0);
+      opacity: 1;
+   }
+   100% {
+      transform: translateY(-600%);
+      opacity: 0;
    }
 }

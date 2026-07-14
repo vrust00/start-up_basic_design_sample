@@ -74,6 +74,7 @@
 }
 
 .first-date {
+  position: relative;
   font-family: "FFGoodPro";
   font-weight: 200;
   text-align: center;
@@ -81,8 +82,9 @@
 }
 .first-date__sample {
   z-index: 1;
-  width: 50%;
-  margin-left: 25%;
+  width: 70%;
+  margin-left: 12.5vw;
+  display: flex;
 }
 .first-date__sample-img {
   width: 100%;
@@ -94,7 +96,100 @@
   margin-bottom: 3vw;
 }
 .first-date__subtitle {
+  z-index: 2;
   font-size: 3vw;
   margin-top: 3vw;
   margin-left: auto;
+  margin-bottom: 5vw;
+}
+.first-date__hearts-container {
+  position: absolute;
+  z-index: 1;
+  height: 30vw;
+  width: 100vw;
+  bottom: 0;
+}
+
+.heart {
+  position: absolute;
+  bottom: 0;
+  font-size: 24px;
+  animation: floatUp linear forwards;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  color: #ff4d4d;
+  width: 10px;
+  height: 10px;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-600%);
+    opacity: 0;
+  }
+}
+.roses {
+  position: relative;
+  height: 80vw;
+}
+.roses__bg {
+  position: absolute;
+  width: 100vw;
+  z-index: 0;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.roses__rose-l {
+  position: absolute;
+  z-index: 10;
+  width: 30%;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+  bottom: 0;
+  animation: roses-rotate-l 5s ease-in-out alternate infinite;
+}
+.roses__rose-r {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  width: 30%;
+  height: auto;
+  transform: scaleX(-1);
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+  animation: roses-rotate-r 5s ease-in-out alternate infinite;
+}
+
+@keyframes roses-rotate-l {
+  0% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}
+@keyframes roses-rotate-r {
+  0% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
 }/*# sourceMappingURL=style.css.map */

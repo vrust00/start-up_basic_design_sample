@@ -1,0 +1,47 @@
+.roses{
+   position: relative;
+   height: 80vw;
+   &__bg{
+      position: absolute;
+      width: 100vw;
+      z-index: 0;
+      object-fit: contain;
+   }
+
+   &__rose-l{
+      position: absolute;
+      z-index: 10;
+      width: 30%;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+      bottom: 0;
+         animation: roses-rotate-l 5s ease-in-out alternate infinite;
+   }
+
+   &__rose-r{
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+      width: 30%;
+      height: auto;
+      transform: scaleX(-1);
+      object-fit: contain;
+      object-position: center;
+      animation: roses-rotate-r 5s ease-in-out alternate infinite;
+   }
+}
+
+
+@keyframes roses-rotate-l {
+   0% { transform: rotate(-10deg); }
+   50% { transform: rotate(10deg); }
+   100% { transform: rotate(-10deg); }
+}
+
+@keyframes roses-rotate-r {
+   0% { transform: rotate(10deg); }
+   50% { transform: rotate(-10deg); }
+   100% { transform: rotate(10deg); }
+}
