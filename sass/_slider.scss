@@ -3,7 +3,7 @@
    width: 100vw;
    position: relative;
    margin-top: 7vw;
-   height: 80vw;
+   height: 49vw;
    overflow: hidden;  
    
    &__bg {
@@ -13,38 +13,47 @@
    }
 
    &__wrapper {
+      
+      
       position: absolute;
+      flex-shrink: 0;
+      height: 45%;
       top: 9vw;
-      z-index: 100;
+      z-index: 1;
       display: flex;
       flex-direction: row;
-      width: fit-content;
-      justify-content: center;
-      gap: 20px;
-   }
-
-   &__slide {
+      width: 70%;
+      margin-left: 14vw;
       
-      z-index: 2;
-      width: 20%;
-
-      &:first-child {
+      
+      gap: 20px;
+      
+   }
+   
+   &__slide {
+      flex: 0 0 28%;
+      z-index: 20;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      
+      &:nth-child(1) {
          margin-top: 4vw;
-         width: 18%;
+         margin-left: 6%;
       }
 
-      &:last-child {
+      &:nth-child(3) {
          margin-top: 4vw;
-         width: 18%;
+         
       }
    }
 
    
    &__slide:nth-child(2) &__slide-img {
+
+      
       margin-top: 1.4vw;
       width: 18vw;
       height: 18vw;
-      margin-left: -19%;
+   
    }
 
    &__slide-sample-img {
@@ -53,13 +62,13 @@
 
    &__slide-img {
       z-index: -1;
-      background-color: lightgrey;
+      // background-color: lightgrey;
       position: absolute;
       margin-top: 1.3vw;
-      width: 16vw;
-      height: 16vw;
-      margin-left: -17%;
-      border-color: aqua;
+      width: 18vw;
+      height: 18vw;
+      margin-left: -26%;
+      
       
    }
 
@@ -70,7 +79,7 @@
       font-weight: 400; 
       position: absolute;
       margin-top: 35vw;
-      margin-left: auto;
+      
       background: rgba(0,0,0,0.5);
       color: white;
       border: none;
@@ -79,23 +88,29 @@
       height: 50px;
       border-radius: 50%;
       cursor: pointer;
-      z-index: 10;
+      z-index: 2;
       transition: background 0.3s;
       &:hover {
          background: rgba(0,0,0,0.8);
       }
       &.prev {
-         margin-left: 40vw;
+         margin-left: 39vw;
       }
       &.next { 
-         margin-left: 56.5vw;
+         margin-left: 55.5vw;
       }
    }
 }
 
-.slider__slide{
+.slider__slide {
    opacity: 1;
-   &.hide{
+   
+   &.hide {
       opacity: 0;
+      
    }
+
+   
 }
+
+
