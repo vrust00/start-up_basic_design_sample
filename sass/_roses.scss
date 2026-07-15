@@ -16,7 +16,7 @@
       object-fit: contain;
       object-position: center;
       bottom: 0;
-         animation: roses-rotate-l 5s ease-in-out alternate infinite;
+      animation: roses-rotate-l 10s ease-in-out alternate infinite;
    }
 
    &__rose-r{
@@ -26,11 +26,38 @@
       z-index: 10;
       width: 30%;
       height: auto;
-      transform: scaleX(-1);
+      
       object-fit: contain;
       object-position: center;
-      animation: roses-rotate-r 5s ease-in-out alternate infinite;
+      animation: roses-rotate-r 10s ease-in-out alternate infinite;
    }
+
+   &__rose-img{
+      position: absolute;
+      z-index: -2;
+      background-color: lightgrey;
+      width: 15.5vw;
+      height: 16vw;
+      margin-top: 36.5vw;
+      margin-left: 42vw;
+         
+      &:first-child{
+         z-index: -1;
+         margin-top: 43vw;
+         margin-left: 27.5vw;
+         transform: rotate(-20.5deg);
+
+      }
+      &:last-child{
+         z-index: -1;
+         margin-top: 43vw;
+         margin-left: 57vw;
+         transform: rotate(20.5deg);
+         
+      }
+   }
+
+
 }
 
 

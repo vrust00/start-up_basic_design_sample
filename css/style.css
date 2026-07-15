@@ -1,3 +1,67 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  line-height: 1;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 @font-face {
   font-family: "FFGoodPro";
   src: url("../fonts/FFGoodPro-Light.eot");
@@ -89,6 +153,29 @@
 .first-date__sample-img {
   width: 100%;
 }
+.first-date__wrapper {
+  position: absolute;
+}
+.first-date__img {
+  position: absolute;
+  background-color: lightgrey;
+}
+.first-date__img:first-child {
+  z-index: -1;
+  margin-top: 12vw;
+  margin-left: 2vw;
+  width: 34.5vw;
+  height: 30vw;
+  transform: rotate(-8deg);
+  clip-path: polygon(0% 0%, 70% 0%, 85% 4.5%, 95% 14%, 100% 30%, 95% 48%, 85% 65%, 70% 80%, 50% 100%, 0% 100%);
+}
+.first-date__img:last-child {
+  z-index: -2;
+  margin-top: 4vw;
+  margin-left: 28vw;
+  width: 39vw;
+  height: 38.5vw;
+}
 .first-date__title {
   font-size: 4vw;
   margin-left: auto;
@@ -105,7 +192,7 @@
 .first-date__hearts-container {
   position: absolute;
   z-index: 1;
-  height: 30vw;
+  height: 100vw;
   width: 100vw;
   bottom: 0;
 }
@@ -129,7 +216,7 @@
     opacity: 1;
   }
   100% {
-    transform: translateY(-600%);
+    transform: translateY(-800%);
     opacity: 0;
   }
 }
@@ -154,7 +241,7 @@
   -o-object-position: center;
      object-position: center;
   bottom: 0;
-  animation: roses-rotate-l 5s ease-in-out alternate infinite;
+  animation: roses-rotate-l 10s ease-in-out alternate infinite;
 }
 .roses__rose-r {
   position: absolute;
@@ -163,12 +250,32 @@
   z-index: 10;
   width: 30%;
   height: auto;
-  transform: scaleX(-1);
   -o-object-fit: contain;
      object-fit: contain;
   -o-object-position: center;
      object-position: center;
-  animation: roses-rotate-r 5s ease-in-out alternate infinite;
+  animation: roses-rotate-r 10s ease-in-out alternate infinite;
+}
+.roses__rose-img {
+  position: absolute;
+  z-index: -2;
+  background-color: lightgrey;
+  width: 15.5vw;
+  height: 16vw;
+  margin-top: 36.5vw;
+  margin-left: 42vw;
+}
+.roses__rose-img:first-child {
+  z-index: -1;
+  margin-top: 43vw;
+  margin-left: 27.5vw;
+  transform: rotate(-20.5deg);
+}
+.roses__rose-img:last-child {
+  z-index: -1;
+  margin-top: 43vw;
+  margin-left: 57vw;
+  transform: rotate(20.5deg);
 }
 
 @keyframes roses-rotate-l {
@@ -192,4 +299,93 @@
   100% {
     transform: rotate(10deg);
   }
+}
+.slider {
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100vw;
+  position: relative;
+  margin-top: 7vw;
+  height: 80vw;
+  overflow: hidden;
+}
+.slider__bg {
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+.slider__wrapper {
+  position: absolute;
+  top: 9vw;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  width: -moz-fit-content;
+  width: fit-content;
+  justify-content: center;
+  gap: 20px;
+}
+.slider__slide {
+  z-index: 2;
+  width: 20%;
+}
+.slider__slide:first-child {
+  margin-top: 4vw;
+  width: 18%;
+}
+.slider__slide:last-child {
+  margin-top: 4vw;
+  width: 18%;
+}
+.slider__slide:nth-child(2) .slider__slide-img {
+  margin-top: 1.4vw;
+  width: 18vw;
+  height: 18vw;
+  margin-left: -19%;
+}
+.slider__slide-sample-img {
+  width: 100%;
+}
+.slider__slide-img {
+  z-index: -1;
+  background-color: lightgrey;
+  position: absolute;
+  margin-top: 1.3vw;
+  width: 16vw;
+  height: 16vw;
+  margin-left: -17%;
+  border-color: aqua;
+}
+.slider__btn {
+  font-family: "FFGoodPro";
+  font-weight: 400;
+  position: absolute;
+  margin-top: 35vw;
+  margin-left: auto;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s;
+}
+.slider__btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+.slider__btn.prev {
+  margin-left: 40vw;
+}
+.slider__btn.next {
+  margin-left: 56.5vw;
+}
+
+.slider__slide {
+  opacity: 1;
+}
+.slider__slide.hide {
+  opacity: 0;
 }/*# sourceMappingURL=style.css.map */

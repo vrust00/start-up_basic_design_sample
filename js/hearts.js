@@ -5,9 +5,9 @@ function createHeart() {
    heart.className = 'heart';   
    heart.style.backgroundImage = 'url("images/heart.png")';
    heart.style.left = Math.random() * 100 + '%'; 
-   heart.style.fontSize = Math.random() * 30 + 20 + 'px'; // 
-   // размер 20–50px
-   heart.style.width = Math.random() * 30 + 20 + 'px';   // ширина 20–50px
+   heart.style.fontSize = Math.random() * 30 + 20 + 'px'; 
+   
+   heart.style.width = Math.random() * 30 + 50 + 'px';   
    heart.style.height = heart.style.width;
    heart.style.backgroundSize = 'contain';
    heart.style.backgroundRepeat = 'no-repeat';
