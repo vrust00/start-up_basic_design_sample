@@ -2,165 +2,254 @@ const wrapper = document.querySelector('.slider__wrapper');
 const prevBtn = document.querySelector('.slider__btn.prev');
 const nextBtn = document.querySelector('.slider__btn.next');
 
+let isAnimating = false;
+
+// Коэффициенты (доли от wrapper)
+const C = {
+  stepX: 0.33,        // ширина карточки + gap
+  
+  y: {
+    slot0: 0,
+    slot1: 0.05,
+    slot2: -0.00,
+    outLeft: 0.1,
+    outRight: -0.1,
+  },
+};
+// ====== Touch/Swipe поддержка ======
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+const slider = document.querySelector('.slider'); // или wrapper
+
+slider.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+slider.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  touchEndY = e.changedTouches[0].screenY;
+  handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+  const diffX = touchEndX - touchStartX;
+  const diffY = touchEndY - touchStartY;
+  
+  // Проверяем, что свайп горизонтальный (X > Y)
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    // Минимальное расстояние для свайпа (50px)
+    if (Math.abs(diffX) > 50) {
+      if (diffX < 0) {
+        // Свайп влево → moveRight
+        moveRight();
+      } else {
+        // Свайп вправо → moveLeft
+        moveLeft();
+      }
+    }
+  }
+}
+// ====== Утилиты ======
 function getSlides() {
-   return wrapper.children;
+  return Array.from(wrapper.children);
 }
 
+function getCenter() {
+  return Math.trunc(getSlides().length / 2);
+}
+
+function toggleButtons(disable) {
+  prevBtn.disabled = disable;
+  nextBtn.disabled = disable;
+}
+
+// Обновляем CSS-переменные на wrapper
+function updateWrapperVars() {
+  const w = wrapper.offsetWidth;
+  const h = wrapper.offsetHeight;
+  wrapper.style.setProperty('--wrapper-w', `${w}px`);
+  wrapper.style.setProperty('--wrapper-h', `${h}px`);
+}
+
+// Сброс инлайн-стилей слайда
+function resetCard(card) {
+  card.style.transition = 'none';
+  card.style.transform = '';
+  card.style.opacity = '';
+}
+
+// Управление классом hide
 function updateVisibility() {
-   const slides = getSlides();
-   // Отключаем transition перед изменением классов
-   for (let i = 0; i < slides.length; i++) {
-      slides[i].style.transition = 'none';
-   }
-   // Форсируем перерисовку
-   void document.body.offsetHeight;
+  const slides = getSlides();
+  const center = getCenter();
+  slides.forEach((s, i) => {
+    const shouldHide = i < center - 1 || i > center + 1;
+    s.classList.toggle('hide', shouldHide);
+   if (i === center) {
+      s.style.transition = 'none';  // без анимации
+      s.style.transform = 'translateY(-5%)';  // приподнять на 5% от своей высоты
+    }
 
-   for (let i = 0; i < slides.length; i++) {
-      slides[i].classList.toggle('hide', i >= 3);
-   }
-
-   // Можно вернуть transition обратно, но мы этого не делаем,
-   // потому что будем включать его только перед анимацией.
-   // Если оставить 'none', то при следующей анимации мы его переопределим.
+   
+  });
 }
 
 function moveRight() {
-   const slides = getSlides();
-   if (slides.length < 4) return;
+  if (isAnimating) return;
+  const slides = getSlides();
+  if (slides.length < 4) return;
 
-   const first = slides[0];
-   const second = slides[1];
-   const third = slides[2];
-   const fourth = slides[3];
+  isAnimating = true;
+  toggleButtons(true);
+  updateWrapperVars();
 
-   // 1. Убеждаемся, что transition отключён
-   const cards = [first, second, third, fourth];
-   cards.forEach(el => el.style.transition = 'none');
-   void document.body.offsetHeight;
+  const center = getCenter();
+  const first = slides[center - 1];
+  const second = slides[center];
+  const third = slides[center + 1];
+  const fourth = slides[center + 2];
 
-   // 2. Устанавливаем начальные позиции (если нужно) — здесь они уже есть
-   // Просто сбрасываем всё, что могло остаться
-   cards.forEach(el => {
-      el.style.transform = '';
-      el.style.opacity = '';
-   });
-   // Но четвёртая должна быть скрыта? Нет, она будет анимироваться.
-   // Убедимся, что у четвёртой нет hide
-   fourth.classList.remove('hide');
+  // Функции перемещения (объявляем ДО использования)
+  const moveX = (coeff) => `calc(${coeff} * var(--wrapper-w))`;
+  const moveY = (coeff) => `calc(${coeff} * var(--wrapper-h))`;
 
-   
-   first.style.transform = 'translateX(-11vw) translateY(5vw)';
-   first.style.opacity = '0';
-   second.style.transform = 'translateX(-20.9vw) translateY(4vw)';
-   third.style.transform = 'translateX(-20.9vw) translateY(-4vw)';
-   fourth.style.transform = 'translateX(-20.9vw) translateY(4vw)';
-   fourth.style.opacity = '1';
+  // 1. Мгновенный сброс + показать fourth
+  [first, second, third, fourth].forEach(card => {
+    resetCard(card);
+    card.style.transition = 'none';
+    card.classList.remove('hide');
+  });
+  
+  // fourth — начальная позиция под третьей
+  fourth.style.transform = `translateX(${moveX(C.stepX)}) translateY(${moveY(C.y.outLeft)})`;
+  fourth.style.opacity = '0';
+second.style.transform = `translateX(0) translateY(${moveY(C.y.slot1 - 0.1)})`;
+  void wrapper.offsetHeight; 
 
-   // 4. Включаем transition
-   cards.forEach(el => {
-      el.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-   });
+  // 2. Включаем transition
+  [first, second, third, fourth].forEach(card => {
+    card.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+  });
 
-   // 5. Ждём окончания анимации
-   first.addEventListener('transitionend', function handler() {
-      first.removeEventListener('transitionend', handler);
+  // 3. Конечные позиции
+   first.style.transform = `translateX(${moveX(-C.stepX)}) translateY(${moveY(C.y.outLeft)})`;
+  first.style.opacity = '0';
 
-      // 6. Отключаем transition
-      cards.forEach(el => el.style.transition = 'none');
+  second.style.transform = `translateX(${moveX(-C.stepX)}) translateY(${moveY(C.y.slot0)})`;
 
-      // 7. Сбрасываем transform и opacity
-      cards.forEach(el => {
-         el.style.transform = '';
-         el.style.opacity = '';
-      });
+  third.style.transform = `translateX(${moveX(-C.stepX)}) translateY(${moveY(-C.y.slot1)})`;
 
-      // 8. Переставляем первую в конец
-      wrapper.appendChild(first);
+  fourth.style.transform = `translateX(${moveX(-C.stepX)}) translateY(${moveY(C.y.outRight + 0.1)})`;
+  fourth.style.opacity = '1';
 
-      // 9. Убираем hide у первой
-      first.classList.remove('hide');
-
-      // 10. Обновляем видимость (transition уже отключён)
-      updateVisibility();
-   });
+  // 4. После анимации
+  first.addEventListener('transitionend', function handler() {
+    first.removeEventListener('transitionend', handler);
+    [first, second, third, fourth].forEach(resetCard);
+    wrapper.appendChild(first);
+    updateVisibility();
+    isAnimating = false;
+    toggleButtons(false);
+  });
 }
 
+
+// ====== Движение влево ======
 function moveLeft() {
-   const slides = getSlides();
-   if (slides.length < 4) return;
+  if (isAnimating) return;
+  const slides = getSlides();
+  if (slides.length < 4) return;
 
-   const first = slides[0];
-   const second = slides[1];
-   const third = slides[2];
-   const last = slides[slides.length - 1];
-   const cards = [first, second, third, last];
+  isAnimating = true;
+  toggleButtons(true);
+  updateWrapperVars();
 
-   // 1. Отключаем transition и сбрасываем всё
-   cards.forEach(el => {
-      el.style.transition = 'none';
-      el.style.transform = '';
-      el.style.opacity = '';
-   });
-   void document.body.offsetHeight;
+  const center = getCenter();
+  const first = slides[center - 1];
+  const second = slides[center];
+  const third = slides[center + 1];
+  const last = slides[slides.length - 1];
 
-   // 2. Убираем hide у всех, кто участвует
-   cards.forEach(el => el.classList.remove('hide'));
+  // Функции перемещения
+  const moveX = (coeff) => `calc(${coeff} * var(--wrapper-w))`;
+  const moveY = (coeff) => `calc(${coeff} * var(--wrapper-h))`;
 
-   // 3. Задаём НАЧАЛЬНЫЕ состояния (до включения transition)
-   // last — далеко слева за экраном
-   last.style.transform = 'translateX(-11vw) translateY(4vw)';
-   last.style.opacity = '0';
+  
+  [first, second, third, last].forEach(card => {
+    resetCard(card);
+    card.style.transition = 'none';
+    card.classList.remove('hide');
+  });
 
-   // Остальные остаются на своих местах (без transform)
-   // Но чтобы они не дёргались, явно задаём opacity=1
-   first.style.opacity = '1';
-   second.style.opacity = '1';
-   third.style.opacity = '1';
-   // Убеждаемся, что у них нет transform
-   first.style.transform = '';
-   second.style.transform = '';
-   third.style.transform = '';
+  
+  first.style.transform = `translateX(0px) translateY(${moveY(C.y.slot0)})`;
+  first.style.opacity = '1';
 
-   // 4. Принудительная перерисовка (чтобы начальные состояния применились)
-   requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-         // 5. Включаем transition
-         cards.forEach(el => {
-            el.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-         });
+  second.style.transform = `translateX(${moveX(-C.stepX*0.01)}) translateY(${moveY(C.y.slot1 - 0.1)})`;
+  second.style.opacity = '1';
 
-         // 6. Задаём КОНЕЧНЫЕ состояния
-         // last выезжает на своё место
-         last.style.transform = 'translateX(20.9vw) translateY(4vw)';
-         last.style.opacity = '1';
+  third.style.transform = `translateX(${moveX(-C.stepX*0.01)}) translateY(${moveY(C.y.slot2)})`;
+  third.style.opacity = '1';
 
-         // third уходит вправо и исчезает
-         third.style.transform = 'translateX(20vw) translateY(4vw)';
-         third.style.opacity = '0';
+  // last — начальная позиция слева, невидима
+  last.style.transform = `translateX(${moveX(-C.stepX * 4)}) translateY(${moveY(C.y.outLeft)})`;
+  last.style.opacity = '0';
 
-         // second сдвигается вправо
-         second.style.transform = 'translateX(20vw) translateY(4vw)';
+  void wrapper.offsetHeight;
 
-         // first сдвигается вправо-вверх
-         first.style.transform = 'translateX(20vw) translateY(-4vw)';
-         first.style.opacity = '1';
+  // 2. Включаем transition
+  [first, second, third, last].forEach(card => {
+    card.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+  });
 
-         // 7. Ждём окончания анимации
-         last.addEventListener('transitionend', function handler() {
-            last.removeEventListener('transitionend', handler);
-            cards.forEach(el => {
-               el.style.transition = 'none';
-               el.style.transform = '';
-               el.style.opacity = '';
-            });
-            wrapper.insertBefore(last, slides[0]);
-            updateVisibility();
-         });
-      });
-   });
+  // 3. Конечные позиции (зеркально moveRight)
+  first.style.transform = `translateX(${moveX(C.stepX)}) translateY(${moveY(C.y.slot1 - 0.1)})`;
+  first.style.opacity = '1';
+
+  second.style.transform = `translateX(${moveX(C.stepX)}) translateY(${moveY(C.y.slot2)})`;
+  second.style.opacity = '1';
+
+  third.style.transform = `translateX(${moveX(C.stepX*1)}) translateY(${moveY(C.y.outLeft)})`;
+  third.style.opacity = '0';
+
+  last.style.transform = `translateX(${moveX(-C.stepX*3)}) translateY(${moveY(C.y.slot0)})`;
+  last.style.opacity = '1';
+
+  // 4. После анимации
+  last.addEventListener('transitionend', function handler() {
+    last.removeEventListener('transitionend', handler);
+    [first, second, third, last].forEach(resetCard);
+    wrapper.appendChild(third);           // third уходит в конец
+    wrapper.insertBefore(last, first);    // last встаёт перед first
+    updateVisibility();
+    isAnimating = false;
+    toggleButtons(false);
+  });
 }
+// ====== Инициализация ======
+updateWrapperVars();
+updateVisibility();
 
 nextBtn.addEventListener('click', moveRight);
 prevBtn.addEventListener('click', moveLeft);
 
-updateVisibility();
+// Ресайз
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    updateWrapperVars();
+    // Сбрасываем трансформации, чтобы не было визуальных глюков
+    const slides = getSlides();
+    slides.forEach(card => {
+      card.style.transition = 'none';
+      card.style.transform = '';
+      card.style.opacity = '';
+    });
+    updateVisibility();
+  }, 200);
+});

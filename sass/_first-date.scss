@@ -41,7 +41,7 @@
             100% 30%,   
             95% 48%,   
             85% 65%,   
-            70% 80%,   
+            70% 83%,   
             50% 100%,
             0% 100%    
          );
@@ -50,8 +50,8 @@
          z-index: -2;
          
          margin-top: 4vw; 
-         margin-left: 28vw;
-         width: 39vw;
+         margin-left: 26.5vw;
+         width: 40vw;
          height: 38.5vw;
       }
       
@@ -63,6 +63,9 @@
       margin-left: auto;
       margin-top: 5vw;
       margin-bottom: 3vw;
+      @media (max-width: 768px){
+         font-size: 6vw;
+      }
    }
    &__subtitle{
       z-index: 2;
@@ -70,6 +73,9 @@
       margin-top: 3vw;
       margin-left: auto;
       margin-bottom: 5vw;
+      @media (max-width: 768px){
+         font-size: 5vw;
+      }
       
    }
    &__hearts-container{
@@ -101,7 +107,7 @@
       opacity: 1;
    }
    100% {
-      transform: translateY(-800%);
+      transform: translateY(-30vw);
       opacity: 0;
    }
 }

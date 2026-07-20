@@ -4,10 +4,10 @@ function createHeart() {
    const heart = document.createElement('div');
    heart.className = 'heart';   
    heart.style.backgroundImage = 'url("images/heart.png")';
-   heart.style.left = Math.random() * 100 + '%'; 
+   heart.style.left = Math.random() * 100 + 'vw'; 
    heart.style.fontSize = Math.random() * 30 + 20 + 'px'; 
    
-   heart.style.width = Math.random() * 30 + 50 + 'px';   
+   heart.style.width = Math.random() * 3 + 3 + 'vw';   
    heart.style.height = heart.style.width;
    heart.style.backgroundSize = 'contain';
    heart.style.backgroundRepeat = 'no-repeat';
@@ -22,4 +22,4 @@ function createHeart() {
 }
 
 
-setInterval(createHeart, 30);
+setInterval(createHeart, 100);

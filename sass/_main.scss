@@ -6,21 +6,28 @@
    top: 0;
    left: 0;
    background-repeat: no-repeat;
-   background-position: center;
+   background-position:top;
    background-size: cover;
    background-attachment: fixed;
    background-image: url('/images/background_main.png');
-   padding-left: 14%;
    padding-top: 10vw;
-   padding-bottom: 250px;
+   padding-bottom: 15vw;
    border-bottom: 1px solid lightgrey;
+   
+
+
+   
    &__title{
       font-weight: 300;
        font-size: 7vw;
        width: 70vw;
        letter-spacing: 10%;
-       
-       
+       margin-left: auto;
+       margin-right: auto;
+      @media (max-width: 768px){
+         width: 90vw;
+         font-size: 10vw;
+      }
        
 
    }
@@ -29,8 +36,12 @@
       font-weight: 100;
        font-size: 2vw;
        width: fit-content;
-       padding-left: 16%;
-      
+       margin-left: auto;
+       margin-right: auto;
+      @media (max-width: 768px){
+         width: 90vw;
+         font-size: 7vw;
+      }
    }
    
 }

@@ -1,12 +1,17 @@
 .roses{
    position: relative;
    height: 80vw;
-   &__bg{
-      position: absolute;
-      width: 100vw;
-      z-index: 0;
-      object-fit: contain;
+
+
+   background-image: url('../images/roses-bg.png');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: 100vw;
+   @media (max-width: 768px){
+         background-size: 150vw;
+         height: 120vw;
    }
+
 
    &__rose-l{
       position: absolute;
@@ -36,24 +41,45 @@
       position: absolute;
       z-index: -2;
       background-color: lightgrey;
-      width: 15.5vw;
-      height: 16vw;
-      margin-top: 36.5vw;
-      margin-left: 42vw;
+      width: 17vw;
+      height: 16.2vw;
+      margin-top: 32.5vw;
+      margin-left: 41vw;
          
       &:first-child{
          z-index: -1;
-         margin-top: 43vw;
-         margin-left: 27.5vw;
+         margin-top: 39.5vw;
+         margin-left: 26vw;
          transform: rotate(-20.5deg);
 
       }
       &:last-child{
          z-index: -1;
-         margin-top: 43vw;
-         margin-left: 57vw;
+         margin-top: 40vw;
+         margin-left: 56vw;
          transform: rotate(20.5deg);
          
+      }
+
+      @media (max-width: 768px){
+         margin-top: 49.5vw;
+         width: 24vw;
+         height: 24vw;
+         margin-left: 36vw;
+         &:first-child{
+         
+            margin-top: 59.9vw;
+            margin-left: 14vw;
+            transform: rotate(-20.5deg);
+
+         }
+         &:last-child{
+            
+            margin-top: 60vw;
+            margin-left: 58vw;
+            transform: rotate(20.5deg);
+            
+         }
       }
    }
 

@@ -10,7 +10,7 @@
 <body>
    <header class="header">
       <div class="header__container">
-         <img src="images\heart.jpg" alt="" class="header__heart">
+         <img src="images\heart.png" alt="" class="header__heart">
          <a href="" class="header__logo-link">
             <img src="images\logo.png" alt="" class="header__logo">
          </a>
@@ -47,7 +47,8 @@
    <script src="js\hearts.js"></script>
 
    <section class="roses">
-      <img src="images\roses-bg.png" alt="" class="roses__bg">
+      <!-- <img src="images\roses-bg.png" alt="" class="roses__bg"> -->
+
       <div class="roses__wrapper">
          <img src="" alt="" class="roses__rose-img">
          <img src="" alt="" class="roses__rose-img">
@@ -59,7 +60,11 @@
    </section>
 
    <section class="slider">
-      <img src="images\bg-slider.png" alt="" class="slider__bg">
+
+      <video  class="slider__bg" autoplay muted loop playsinline>
+         <source src="videos\bg_video_slider.webm">
+      </video>
+
       <div class="slider__wrapper">
          <div class="slider__slide">
             <img src="images\slider-sample.png" alt="" class="slider__slide-sample-img">
@@ -80,11 +85,15 @@
          <div class="slider__slide">
             <img src="images\slider-sample.png" alt="" class="slider__slide-sample-img">
             <img src="" alt="5" class="slider__slide-img">
-         </div>
+         </div> 
+         
          
       </div>
-      <button class="slider__btn prev"><</button>
-      <button class="slider__btn next">></button>
+      <div class="slider__btn-wrapper">
+         <button class="slider__btn prev"><</button>
+         <button class="slider__btn next">></button>
+      </div>
+      
 
       <div class="slider__dots"></div>
    </section>
