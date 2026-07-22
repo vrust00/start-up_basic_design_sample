@@ -215,7 +215,7 @@ function moveLeft() {
 
   if (!isMobile) {
     // ---- Десктопный режим (зеркально moveRight) ----
-    last.style.transform = `translateX(${moveX(-C.stepX)}) translateY(${moveY(C.y.outLeft)})`;
+    last.style.transform = `translateX(${moveX(-C.stepX*4)}) translateY(${moveY(C.y.outLeft)})`;
     last.style.opacity = '0';
     second.style.transform = `translateX(0) translateY(${moveY(C.y.slot1 - 0.1)})`;
     void wrapper.offsetHeight;
