@@ -315,71 +315,73 @@ html, body {
 }
 .roses__rose-img {
   position: absolute;
-  z-index: -2;
-  background-color: lightgrey;
-  width: 17vw;
+  top: 40.5vw;
+  left: 49.5vw;
+  width: 18vw;
   height: 16.2vw;
-  margin-top: 32.5vw;
-  margin-left: 41vw;
+  transform: translate(-50%, -50%);
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: -2;
 }
 .roses__rose-img:first-child {
-  width: 17.4vw;
+  top: 48vw;
+  left: 34.2vw;
+  width: 18vw;
   height: 16.7vw;
+  transform: translate(-50%, -50%) rotate(-20.5deg);
   z-index: -1;
-  margin-top: 38.9vw;
-  margin-left: 26vw;
-  transform: rotate(-20.5deg);
 }
 .roses__rose-img:last-child {
-  height: 16.7vw;
+  top: 48vw;
+  left: 64.2vw;
   width: 17.2vw;
+  height: 16.7vw;
+  transform: translate(-50%, -50%) rotate(20.5deg);
   z-index: -1;
-  margin-top: 39vw;
-  margin-left: 55.6vw;
-  transform: rotate(20.5deg);
 }
 @media (max-width: 768px) {
   .roses__rose-img {
-    margin-top: 65vw;
-    width: 30vw;
-    height: 31vw;
-    margin-left: 34vw;
-  }
-  .roses__rose-img:first-child {
-    width: 30vw;
-    height: 31vw;
-    margin-top: 77vw;
-    margin-left: 7.5vw;
-    transform: rotate(-20.5deg);
-  }
-  .roses__rose-img:last-child {
+    top: 81vw;
+    left: 48.5vw;
     width: 31vw;
     height: 31vw;
-    margin-top: 78vw;
-    margin-left: 59.5vw;
-    transform: rotate(20.5deg);
+  }
+  .roses__rose-img:first-child {
+    top: 94vw;
+    left: 22.3vw;
+    width: 31.1vw;
+    height: 31vw;
+    transform: translate(-50%, -50%) rotate(-20.5deg);
+  }
+  .roses__rose-img:last-child {
+    top: 94vw;
+    left: 75.45vw;
+    width: 31vw;
+    height: 31vw;
+    transform: translate(-50%, -50%) rotate(20.5deg);
   }
 }
 @media (max-width: 375px) {
   .roses__rose-img {
-    margin-top: 65vw;
-    width: 30vw;
+    top: 81vw;
+    left: 48vw;
+    width: 31.2vw;
     height: 31vw;
-    margin-left: 32vw;
   }
   .roses__rose-img:first-child {
-    width: 30vw;
-    height: 31vw;
-    margin-top: 77vw;
-    margin-left: 5vw;
-    transform: rotate(-20.5deg);
-  }
-  .roses__rose-img:last-child {
+    top: 93vw;
+    left: 22.2vw;
     width: 31vw;
     height: 31vw;
-    margin-top: 78vw;
-    margin-left: 58vw;
-    transform: rotate(20.5deg);
+    transform: translate(-50%, -50%) rotate(-20.5deg);
+  }
+  .roses__rose-img:last-child {
+    top: 94vw;
+    left: 75.2vw;
+    width: 31vw;
+    height: 31vw;
+    transform: translate(-50%, -50%) rotate(20.5deg);
   }
 }
 
