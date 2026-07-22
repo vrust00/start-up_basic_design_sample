@@ -408,13 +408,18 @@ html, body {
 .slider {
   position: relative;
   width: 100%;
-  height: 50vw;
+  height: 60vw;
+}
+@media (max-width: 768px) {
+  .slider {
+    height: 100vw;
+  }
 }
 .slider__bg {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 60vw;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
@@ -423,12 +428,7 @@ html, body {
 }
 @media (max-width: 768px) {
   .slider__bg {
-    height: 200%;
-  }
-}
-@media (max-width: 450px) {
-  .slider__bg {
-    height: 300%;
+    height: 100vw;
   }
 }
 .slider__wrapper {
@@ -455,8 +455,9 @@ html, body {
 }
 @media (max-width: 450px) {
   .slider__wrapper {
-    width: 300%;
-    height: 205%;
+    top: 12vw;
+    width: 170%;
+    height: 69%;
   }
 }
 .slider__slide {
@@ -486,7 +487,12 @@ html, body {
 }
 @media (max-width: 768px) {
   .slider__slide-img {
-    height: 69%;
+    height: 35%;
+  }
+}
+@media (max-width: 450px) {
+  .slider__slide-img {
+    height: 58%;
   }
 }
 .slider__btn-wrapper {
@@ -502,12 +508,12 @@ html, body {
 @media (max-width: 768px) {
   .slider__btn-wrapper {
     width: 30vw;
-    bottom: -50%;
+    bottom: 20%;
   }
 }
 @media (max-width: 450px) {
   .slider__btn-wrapper {
-    bottom: -175%;
+    bottom: 14%;
     width: 40vw;
   }
 }
@@ -546,5 +552,58 @@ html, body {
     width: 15vw;
     height: 15vw;
     font-size: 10vw;
+  }
+}
+
+.loveis {
+  position: relative;
+  width: 100vw;
+  display: block;
+  height: 75vw;
+  background-image: url("../images/loveis-bg.png");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 90%;
+}
+.loveis__img {
+  position: absolute;
+  top: 37%;
+  left: 55%;
+  background-color: lightgrey;
+  width: 32%;
+  height: 33%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: -1;
+  display: block;
+}
+.loveis__animation-img {
+  position: absolute;
+  display: block;
+  z-index: 3;
+  pointer-events: none;
+}
+.loveis__animation-img:first-of-type {
+  top: 72%;
+  left: 37%;
+  width: 3.5%;
+  height: auto;
+  animation: spin 2s linear infinite;
+}
+.loveis__animation-img:last-of-type {
+  top: 69.1%;
+  left: 41.6%;
+  width: 4%;
+  height: auto;
+  animation: spin 2s linear infinite;
+  animation-fill-mode: forwards;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }/*# sourceMappingURL=style.css.map */

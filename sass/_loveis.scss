@@ -1,0 +1,58 @@
+.loveis {
+   position: relative;
+   width: 100vw;
+   display: block;
+   height: 75vw;
+   // background-color: #f0f;  // временный фон, чтобы убедиться, что блок виден
+   background-image: url('../images/loveis-bg.png');
+   background-repeat: no-repeat;
+   background-position: top;
+   background-size: 90%;
+   
+   // Изображение (иконка, декоративный элемент)
+   &__img {
+      position: absolute;
+      top:37%;
+      left:55%;
+      background-color: lightgrey;
+      width: 32%;                // подберите размер под дизайн
+      height: 33%;
+      object-fit: cover;
+      z-index: -1;                // поверх фона и затемнения
+      display: block;
+      
+   }
+
+   // Блок с анимацией (например, плавающие элементы)
+   &__animation-img {
+   position: absolute;
+   display: block;           // чтобы корректно отображались размеры
+   z-index: 3;
+   pointer-events: none;
+   
+   
+   &:first-of-type {
+      top: 72%;
+      left: 37%;
+      width: 3.5%;
+      height: auto;
+      animation: spin 2s linear infinite;
+   }
+   &:last-of-type {
+      top: 69.1%;
+      left: 41.6%;
+      width: 4%;
+      height: auto;
+      animation: spin 2s linear infinite;
+      animation-fill-mode: forwards; 
+   }
+}
+
+
+}
+
+
+@keyframes spin {
+      0% {transform: rotate(0deg); }
+      100% {transform: rotate(360deg); }
+}

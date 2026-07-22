@@ -1,25 +1,28 @@
 .slider {
   position: relative;
   width: 100%;
-  height: 50vw;
-  
+  height: 60vw;
+  @media (max-width: 768px) {
+      height: 100vw;
+  }
+
+
+
 
   &__bg {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 60vw;
     object-fit: cover;          // обрезает края, центр всегда виден
     object-position: center;
     z-index: -1;
 
    @media (max-width: 768px) {
-      height: 200%;
+      height: 100vw;
     }
 
-    @media (max-width: 450px) {
-      height: 300%;
-    }
+   
   }
 
   &__wrapper {
@@ -44,8 +47,9 @@
     }
 
     @media (max-width:450px) {
-      width: 300%;
-      height: 205%;
+      top: 12vw;
+      width: 170%;
+      height: 69%;
     }
   }
 
@@ -61,6 +65,7 @@
       pointer-events: none;
     }
 
+    
 
   }
 
@@ -81,9 +86,11 @@
     position: relative;
 
    @media (max-width: 768px) {
-      height: 69%;  
+      height: 35%;  
      }
-
+    @media (max-width: 450px) {
+      height: 58%;  
+     }
   
   }
 
@@ -99,11 +106,11 @@
 
     @media (max-width: 768px) {
       width: 30vw;
-      bottom: -50%;      
+      bottom: 20%;      
     }
 
     @media (max-width: 450px) {
-      bottom: -175%; 
+      bottom: 14%; 
       width: 40vw;
     }
 
